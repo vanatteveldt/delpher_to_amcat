@@ -20,18 +20,11 @@ from delpher_to_amcat.transfer import DelpherToAmcat
 
 
 if __name__ == '__main__':
-    # thread1 = DelpherToAmcat(from_date='01-01-1945', until_date='31-12-1954')
-    thread1 = DelpherToAmcat(from_date='01-01-1945', until_date='03-01-1945')
-    thread1.start()
-    '''
-    thread2 = DelpherToAmcat(from_date='01-01-1955', until_date='31-12-1964')
-    thread2.start()
-    thread3 = DelpherToAmcat(from_date='01-01-1965', until_date='31-12-1974')
-    thread3.start()
-    thread4 = DelpherToAmcat(from_date='01-01-1975', until_date='31-12-1984')
-    thread4.start()
-    thread5 = DelpherToAmcat(from_date='01-01-1985', until_date='31-12-1994')
-    thread5.start()
-    thread6 = DelpherToAmcat(from_date='01-01-1995', until_date='31-12-1995')
-    thread6.start()
-    '''
+    
+    for year in range(1945, 1995, 2):
+        start = '01-01-' + str(year)
+        end = '31-12-' + str(year + 1) 
+
+        thread = DelpherToAmcat(from_date=start, until_date=end)
+        thread.name = str(year)
+        thread.start()
