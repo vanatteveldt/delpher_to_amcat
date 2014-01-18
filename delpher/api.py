@@ -107,5 +107,9 @@ class DelpherAPI:
             log.exception('Could not get OCR data for url {url}.'.format(**locals()))
             return '<failed to load>'
 
-        # Each paragraph is one item in the list
-        return "\n\n".join([response[key] for key in sorted(response.keys()) if key != 'title'])
+        if response is None:
+            log.error('Did not get OCR data for url {url}.'.format(**locals()))
+            return '<failed to load>'
+        else:
+            # Each paragraph is one item in the list
+            return "\n\n".join([response[key] for key in sorted(response.keys()) if key != 'title'])
